@@ -13,8 +13,7 @@
  @import url('https://fonts.googleapis.com/css?family=Frijole|Limelight|Muli:300,700,900');
 
 html, body {
-	background: #000 url('../img/bg.png') repeat-y scroll top left;
-	background-size: contain;
+	background: #000;
   color: #fff;
 	font-family: 'Muli', sans-serif;
   font-size: 1em;
@@ -107,7 +106,11 @@ textarea {
    ========================================================================== */
 
 h1 {
-	font-size: 3rem;
+	box-sizing: border-box;
+	margin: 0 auto;
+	padding: 2rem .8rem;
+	font-size: 1.8rem;
+	line-height: .8;
 }
 
 .font-movie {
@@ -119,11 +122,16 @@ h1 {
 }
 
 .extra-v-space {
-	margin: 2rem;
+	margin: 2rem 0;
 }
 
 footer {
-	font-size: .8rem;
+	font-size: .7rem;
+}
+
+footer span {
+	width: 100%;
+	display: block;
 }
 
 
@@ -231,8 +239,48 @@ footer {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+@media only screen and (min-width: 340px) {
+	html {
+		background: url('../img/bg.png') center center repeat-y scroll;
+		background-size: contain;
+	}
+	h1 {
+		padding: 2rem 3rem;
+	}
+	.copyright, .all-rights {
+		width: auto;
+		display: inline;
+	}
+}
+
+@media only screen and (min-width: 576px) {
+	h1 {
+		font-size: 3rem;
+		padding: 2rem 4rem;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	html {
+		background-size: cover;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	h1 {
+		width: 60%;
+		padding: 3rem3rem;
+		background: url('../img/bg.png') center center repeat-y scroll;
+		background-size: cover;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	h1 {
+		width: 65%;
+		padding: 4rem 3rem;
+		font-size: 3rem;
+	}
 }
 
 @media print,
