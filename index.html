@@ -29,16 +29,20 @@
 					</header>
 				</div>
 			</div>
-
-			<div class="row extra-v-space">
-				<div class="col text-center">
+			<div class="row justify-content-center">
+				<div class="col-8 text-center">
 					<main>
-						Movie here...
+						<p>Battle it out to determine your Top 100 American movies of all time.</p>
+						<h2>Let the blood bath begin!</h2>
+						<ul class="list-unstyled">
+							<li class="mt-5"><button type="button" class="btn btn-xl btn-outline-success .btn-block">Play <i class="fas fa-play-circle"></i></button></li>
+							<li  class="mt-4"><button type="button" class="btn btn-sm  btn-outline-info" data-toggle="modal" data-target="#instructionsModal">Instructions <i class="fas fa-info-circle"></i></button></li>
+						</ul>
 					</main>
 				</div>
 			</div>
 
-			<div class="row extra-v-space">
+			<div class="row mt-5">
 				<div class="col text-center">
 					<footer>
 						<span class="copyright">&copy 2018 Jason Spiller.</span> <span class="all-rights"><em>All Rights Reserved</em></span>
@@ -49,9 +53,36 @@
 		</div>
 
 
+		<!-- Instructions modal -->
+		<div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="Instructions" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>You will be presented with two combatants in the form of movies from the American Film Institute's Top 100 American Movies.</p>
+
+						<p>To beatdown your opponent and reward your hero (i.e. the movie you prefer), simply click your favorite of the two.</p>
+
+						<p>A progress meter is displayed under your combatants. It may take awhile, but persevere and you'll end up a ranking of all your heroes and their fallen foes.</p>
+
+						<p>To commence your Movie Beatdown, simply click the play button below.</p>
+		      </div>
+		      <div class="modal-footer justify-content-center">
+		        <button type="button" data-dismiss="modal" class="btn btn-lg btn-outline-success .btn-block">Play <i class="fas fa-play-circle"></i></button>
+		      </div>
+		    </div>
+			</div>
+		</div>
+
+
 		<script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
 		<script src="assets/js/vendor/jquery-3.2.1.min.js"></script>
 		<script src="assets/js/vendor/bootstrap.min.js"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 		<script src="assets/js/plugins.js"></script>
 		<script src="assets/js/main.js"></script>
 

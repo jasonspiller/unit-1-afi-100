@@ -107,10 +107,14 @@ textarea {
 
 h1 {
 	box-sizing: border-box;
-	margin: 0 auto;
+	margin: 0 auto .5rem;
 	padding: 2rem .8rem;
 	font-size: 1.8rem;
 	line-height: .8;
+}
+
+h2 {
+	font-size: 1.5rem;
 }
 
 .font-movie {
@@ -121,14 +125,69 @@ h1 {
 	font-family: 'Frijole', sans-serif;
 }
 
-.extra-v-space {
-	margin: 2rem 0;
+/* override BS rounded corners */
+.btn {
+	border-radius: 0;
+}
+
+/* make an extra large button */
+.btn-xl {
+	padding: .8rem 2.4rem;
+	font-size: 1.25rem;
+	line-height: 1;
+}
+
+/* custom modal classes */
+body.modal-open > :not(.modal) {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+}
+
+.modal-content {
+	width: 90%;
+	margin: 2rem auto;
+	border: 0;
+	border-radius: 0;
+	background: rgba(255,255,255,.2);
+}
+
+.modal-header {
+	padding: 0;
+	border-bottom: 0;
+}
+
+.modal-header .close {
+	margin: -1.5rem -1rem 0 auto;
+	border-radius: 3rem;
+	padding: 0;
+	background: #000;
+	opacity: 1;
+}
+
+.modal-footer {
+	border-top: 0;
+	padding: 0 0 1rem;
+}
+
+.modal-backdrop {
+	width: 65%;
+	margin: 0 auto;
+  opacity:0.75 !important;
+}
+
+.close {
+    font-size: 3rem;
+    display:block;
 }
 
 footer {
 	font-size: .7rem;
 }
 
+/* stack footer on small devices */
 footer span {
 	width: 100%;
 	display: block;
@@ -251,31 +310,52 @@ footer span {
 		width: auto;
 		display: inline;
 	}
+	btn-xl {
+		padding: auto;
+		font-size: auto;
+		line-height: auto;
+	}
+	.modal-dialog {
+		width: 60%;
+		margin: 0 auto;
+	}
 }
 
 @media only screen and (min-width: 576px) {
 	h1 {
 		font-size: 3rem;
-		padding: 2rem 4rem;
+		padding: 2rem 3rem;
+	}
+	h2 {
+		font-size: auto;
+	}
+	.btn-xl {
+		padding: 1.5rem 3rem;
+		font-size: 2rem;
+		line-height: 2rem;
+	}
+	.modal-dialog {
+		width: 60%;
 	}
 }
 
 @media only screen and (min-width: 768px) {
-	html {
-		background-size: cover;
-	}
 }
 
 @media only screen and (min-width: 992px) {
 	h1 {
 		width: 60%;
-		padding: 3rem3rem;
+		margin: 0 auto 3rem;
+		padding: 3rem;
 		background: url('../img/bg.png') center center repeat-y scroll;
 		background-size: cover;
 	}
 }
 
 @media only screen and (min-width: 1200px) {
+	html {
+		background-size: cover;
+	}
 	h1 {
 		width: 65%;
 		padding: 4rem 3rem;
