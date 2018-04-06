@@ -10,10 +10,19 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-html {
-    color: #222;
-    font-size: 1em;
-    line-height: 1.4;
+ @import url('https://fonts.googleapis.com/css?family=Frijole|Limelight|Muli:300,700,900');
+
+html, body {
+	background: #000 url('../img/bg.png') repeat-y scroll top left;
+	background-size: contain;
+  color: #fff;
+	font-family: 'Muli', sans-serif;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+body {
+	background: none;
 }
 
 /*
@@ -97,6 +106,25 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+h1 {
+	font-size: 3rem;
+}
+
+.font-movie {
+	font-family: 'Limelight', sans-serif;
+}
+
+.font-beatdown {
+	font-family: 'Frijole', sans-serif;
+}
+
+.extra-v-space {
+	margin: 2rem;
+}
+
+footer {
+	font-size: .8rem;
+}
 
 
 
