@@ -1,17 +1,66 @@
 $(function() {
 
-	$('#play').on('click', function() {
+	//build movies to be added to the board
+	function buildMovie(num, imgPath, title, year) {
 
-		$('main').slideToggle(1000, function() {
-			$(this).html('<div style="height:300px; width:100%; padding: 10px; background:#fff" id="gameBoard"><div style="height:120px; width:80%; margin: 10px auto; background:#000; display:inline-block; vertical-align: middle;" id="movie1" class="clearfix"></div><div style="height:120px; width:80%; margin: 10px auto; background:#000; display:inline-block; vertical-align: middle;" id="movie2" class="clearfix"></div></div>')
-			$(this).slideToggle(1000);
+		// build movie output string
+		var strMovie = `<div class="movie text-left" id="movie${num}"><img src="${imgPath}" alt="${title}"><h2>${title}</h2><h3>${year}</h3></div>`;
+
+		return strMovie;
+	}
+
+
+	// start the game
+	function startGame(movieArray) {
+
+		//build movies output
+		var strOutputMovies = buildMovie(1,movieArray[0].Poster,movieArray[0].Title,movieArray[0].Year); + ''
+		strOutputMovies += buildMovie(2,movieArray[1].Poster,movieArray[1].Title, movieArray[1].Year);
+
+		// toggle display and output movies to the board
+		$('#gameBoard').slideToggle(500, function() {
+			$(this).html(strOutputMovies);
+			$(this).slideToggle(500);
 		});
+	}
 
-	});
 
-	// make the api request
-	$.get('http://data.fixer.io/api/latest?access_key=3e95437b3ad0e0208372ddfeed6587c3', function(response) {
-		console.log(response.rates.USD);
-	})
+	// initilize the game
+	function initGame() {
+
+		// array to hold top 10 movies
+		var arrMovieIDs = [
+			'tt0033467',
+			'tt0068646',
+			'tt0034583',
+			// 'tt0081398',
+			// 'tt0045152',
+			// 'tt0031381',
+			// 'tt0056172',
+			// 'tt0108052',
+			// 'tt0052357',
+			'tt0032138'
+		],
+		arrMovies = [];
+
+		// make api calls for all movies
+		for(var i=0; i<arrMovieIDs.length; i++) {
+
+			// call api
+			$.get(`http://www.omdbapi.com/?i=${arrMovieIDs[i]}&apikey=5e90d428`, function(response) {
+
+				// add each move to the array
+				arrMovies.push(response);
+
+				// make sure we have all movies
+				if (arrMovies.length === arrMovieIDs.length) {
+					startGame(arrMovies);
+				}
+			})
+		}
+	}
+
+	// event handlers
+	$('#play').on('click', initGame);
 
 })
