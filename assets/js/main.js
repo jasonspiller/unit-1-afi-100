@@ -1,5 +1,8 @@
 $(function() {
 
+	// global until I find a better way
+	var arrMovies = [];
+
 	//build movies to be added to the board
 	function buildMovie(num, imgPath, title, year) {
 
@@ -22,6 +25,27 @@ $(function() {
 			$(this).html(strOutputMovies);
 			$(this).slideToggle(500);
 		});
+
+		// add event handler to movie
+		$('#gameBoard').on('click', '.movie', function () {
+
+			// get the title of winning movie
+			var objMovieTitle = $(this).find('h2');
+			var strMovieTitle = objMovieTitle[0].innerText;
+
+			// test for
+			for (var i=0; i < arrMovies.length; i++) {
+        if (arrMovies[i].Title === strMovieTitle) {
+        	if(arrMovies[i].Votes === undefined) {
+						arrMovies[i].Votes = 1;
+					} else {
+						arrMovies[i].Votes += 1;
+					}
+        }
+    	}
+
+			console.log(arrMovies);
+		});
 	}
 
 
@@ -40,8 +64,7 @@ $(function() {
 			// 'tt0108052',
 			// 'tt0052357',
 			'tt0032138'
-		],
-		arrMovies = [];
+		];
 
 		// make api calls for all movies
 		for(var i=0; i<arrMovieIDs.length; i++) {
