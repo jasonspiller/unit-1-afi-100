@@ -153,9 +153,8 @@ main {
 }
 
 .movie {
-	display: inline-block;
 	height: 120px;
-	width: 80%;
+	width: 100%;
 	margin: 10px auto;
 	padding: 10px;
 	background: #fff;

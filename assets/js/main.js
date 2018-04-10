@@ -33,14 +33,14 @@ $(function() {
 			var strOutputMatch = '';
 
 			//build movies output
-			for (var movie = 0; movie < arrKeys.length; movie++) {
+			for (var i = 0; i < arrKeys.length; i++) {
 
-				strOutputMatch += '<div class="movie text-left" id="' + arrKeys[movie] +
-													'"><img src="' + arrMatches[intMatch][arrKeys[movie]].Poster +
-													'" alt="' + arrMatches[intMatch][arrKeys[movie]].Title +
-													'"><h2>' + arrMatches[intMatch][arrKeys[movie]].Title +
-													'</h2><h3>' + arrMatches[intMatch][arrKeys[movie]].Year +
-													'</h3></div>';
+				strOutputMatch += '<div class="movie text-left" id="' + arrKeys[i] +
+													'"><img src="' + arrMatches[intMatch][arrKeys[i]].Poster +
+													'" alt="' + arrMatches[intMatch][arrKeys[i]].Title +
+													'"><h2>' + arrMatches[intMatch][arrKeys[i]].Title +
+													'</h2><p>' + arrMatches[intMatch][arrKeys[i]].Year +
+													'</p></div>';
 			}
 
 			// output progress
@@ -62,7 +62,7 @@ $(function() {
 				var strMovieTitle = $(this).find('h2')[0].innerText;
 
 				// add vote to the appropriate
-				for (var i=0; i < arrMovies.length; i++) {
+				for (var i = 0; i < arrMovies.length; i++) {
 					if (arrMovies[i].Title === strMovieTitle) {
 						arrMovies[i].votes += 1;
 					}
@@ -78,12 +78,25 @@ $(function() {
 		} else {
 
 			// no more matches, sort array based on votes
-			arrMovies.sort(sortMovieArray)
+			arrMovies.sort(sortMovieArray);
+
+			// start ordered list
+			var strOrderedList = '<ol>';
+
+			for (var i = 0; i < arrMovies.length; i++) {
+				strOrderedList += '<li><div class="movie text-left"><img src="' + arrMovies[i].Poster +
+													'" alt="' + arrMovies[i].Title +
+													'"><h2>' + arrMovies[i].Title +
+													'</h2><p>' + arrMovies[i].Year +
+													'</p></div></li>';
+			}
+
+			// close ordered list
+			strOrderedList += '</ol>'
 
 			// output sorted array
 			$('#gameBoard').slideToggle(500, function() {
-				//$(this).html(arrMovies);
-				console.log(arrMovies);
+				$(this).html(strOrderedList);
 				$(this).slideToggle(500);
 			});
 		}
@@ -141,12 +154,12 @@ $(function() {
 			'tt0033467',
 			'tt0068646',
 			'tt0034583',
-			// 'tt0081398',
-			// 'tt0045152',
-			// 'tt0031381',
-			// 'tt0056172',
-			// 'tt0108052',
-			// 'tt0052357',
+			'tt0081398',
+			'tt0045152',
+			'tt0031381',
+			'tt0056172',
+			'tt0108052',
+			'tt0052357',
 			'tt0032138'
 		];
 
