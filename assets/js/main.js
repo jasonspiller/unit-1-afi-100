@@ -44,7 +44,7 @@ $(function() {
 			}
 
 			// output progress
-			strOutputMatch += `<div>Step ${intMatch+1} of ${arrMatches.length}</div>`;
+			strOutputMatch += `<div class="steps">Step ${intMatch+1} of ${arrMatches.length}</div>`;
 
 			// toggle display and output movies to the board
 			$('#gameBoard').slideToggle(500, function() {
@@ -81,7 +81,7 @@ $(function() {
 			arrMovies.sort(sortMovieArray);
 
 			// start ordered list
-			var strOrderedList = '<ol>';
+			var strOrderedList = '<ol class="sorted-list">';
 
 			for (var i = 0; i < arrMovies.length; i++) {
 				strOrderedList += '<li><div class="movie"><img src="' + arrMovies[i].Poster +
@@ -91,14 +91,18 @@ $(function() {
 													'</p></div></li>';
 			}
 
-			// close ordered list
-			strOrderedList += '</ol>'
+			// close ordered list and play again button
+			strOrderedList += '<ul class="list-unstyled"><li class="mt-5"><button type="button" class="btn btn-xl btn-outline-info copy" data-clipboard-target="#gameBoard ol">Copy List <i class="fas fa-copy"></i></button></li><li class="mt-4"><button type="button" class="btn btn-lg btn-outline-success play-again">Play Again <i class="fas fa-undo-alt"></i></button></li></ul>'
+
 
 			// output sorted array
 			$('#gameBoard').slideToggle(500, function() {
 				$(this).html(strOrderedList);
 				$(this).slideToggle(500);
 			});
+
+			// clear all event listeners
+			$('#gameBoard').off('click', '.movie');
 		}
 	}
 
@@ -152,14 +156,14 @@ $(function() {
 		// array to hold top 10 movies
 		var arrMovieIDs = [
 			'tt0033467',
-			'tt0068646',
-			'tt0034583',
-			'tt0081398',
-			'tt0045152',
-			'tt0031381',
-			'tt0056172',
-			'tt0108052',
-			'tt0052357',
+			// 'tt0068646',
+			// 'tt0034583',
+			// 'tt0081398',
+			// 'tt0045152',
+			// 'tt0031381',
+			// 'tt0056172',
+			// 'tt0108052',
+			// 'tt0052357',
 			'tt0032138'
 		];
 
@@ -185,7 +189,26 @@ $(function() {
 		}
 	}
 
+
+	// reset all variables and play again
+	function playAgain() {
+
+		arrMovies = [],
+		arrMatches = [],
+		intMatch = 0;
+
+		initGame();
+	}
+
+
+	// copy list
+	function copyList() {
+		new ClipboardJS('.copy');
+	}
+
 	// event handlers
 	$('.play').on('click', initGame);
+	$('#gameBoard').on('click', '.play-again', playAgain);
+	$('#gameBoard').on('click', '.copy', copyList);
 
 })

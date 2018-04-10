@@ -104,6 +104,13 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+a h1 {
+	color: #fff;
+}
+
+a:hover {
+	text-decoration: none;
+}
 
 h1 {
 	box-sizing: border-box;
@@ -152,6 +159,18 @@ main {
 	background: #000;
 }
 
+.sorted-list {
+	-webkit-padding-start: 1rem;
+	padding-left: 1rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.sorted-list p {
+	font-size: 1rem;
+	font-weight: normal;
+}
+
 .movie {
 	width: 100%;
 	margin: 10px auto;
@@ -159,13 +178,21 @@ main {
 	background: #fff;
 	color: #000;
 	text-align: center;
-	cursor: pointer;
+	cursor: ;
 }
 
 .movie img {
 	display: block;
 	height: 80px;
 	margin: 0 auto 10px;
+}
+
+.steps {
+	font-weight: bold;
+}
+
+ol .movie {
+	cursor: default;
 }
 
 
@@ -218,6 +245,7 @@ body.modal-open > :not(.modal) {
 
 /* footer styles */
 footer {
+	margin: 2rem 0;
 	font-size: .7rem;
 }
 

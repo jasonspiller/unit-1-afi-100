@@ -1,5 +1,5 @@
 # unit-1-movie-beatdown
-A game to determine your order of the American Film Institute's 100 greatest American films of all time.
+A game to determine your order of the American Film Institute's 10 greatest American films of all time.
 
 Details
 ===
@@ -21,6 +21,7 @@ Honoring the 10th anniversary of this award-winning series, a jury of 1,500 film
 
 Links and Resources
 ===
+**Production** - http://jasonspiller.com/wdi/unit-1-movie-beatdown
 **GitHub Repo** - https://github.com/jasonspiller/unit-1-afi-100
 **Trello Board** - https://trello.com/b/WVQsmTV8/unit-1-afi-100
 **AFI's 10th Anniversary 100 ** - http://www.afi.com/100Years/movies10.aspx
