@@ -114,7 +114,7 @@ h1 {
 }
 
 h2 {
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 }
 
 h3 {
@@ -153,19 +153,19 @@ main {
 }
 
 .movie {
-	height: 120px;
 	width: 100%;
 	margin: 10px auto;
 	padding: 10px;
 	background: #fff;
 	color: #000;
+	text-align: center;
 	cursor: pointer;
 }
 
 .movie img {
-	float: left;
-	height: 100px;
-	margin-right: 10px;
+	display: block;
+	height: 80px;
+	margin: 0 auto 10px;
 }
 
 
@@ -339,6 +339,15 @@ footer span {
 		width: 60%;
 		margin: 0 auto;
 	}
+	.movie {
+		height: 120px;
+		text-align: left;
+	}
+	.movie img {
+		float: left;
+		height: 100px;
+		margin: 0 10px 0 0;
+	}
 }
 
 @media only screen and (min-width: 576px) {
@@ -347,7 +356,7 @@ footer span {
 		padding: 2rem 3rem;
 	}
 	h2 {
-		font-size: auto;
+		font-size: 1.5rem;
 	}
 	.btn-xl {
 		padding: 1.5rem 3rem;
@@ -369,6 +378,15 @@ footer span {
 		padding: 3rem;
 		background: #000 url('../img/bg.png') center center repeat-y scroll;
 		background-size: cover;
+	}
+	.movie {
+		height: 200px;
+	}
+	.movie h2 {
+		font-size: 2rem;
+	}
+	.movie img {
+		height: 180px;
 	}
 }
 

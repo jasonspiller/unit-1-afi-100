@@ -1,6 +1,6 @@
 $(function() {
 
-	// global until I find a better way
+	// global variables to ease accessing objects
 	var arrMovies = [],
 			arrMatches = [],
 			intMatch = 0;
@@ -35,7 +35,7 @@ $(function() {
 			//build movies output
 			for (var i = 0; i < arrKeys.length; i++) {
 
-				strOutputMatch += '<div class="movie text-left" id="' + arrKeys[i] +
+				strOutputMatch += '<div class="movie" id="' + arrKeys[i] +
 													'"><img src="' + arrMatches[intMatch][arrKeys[i]].Poster +
 													'" alt="' + arrMatches[intMatch][arrKeys[i]].Title +
 													'"><h2>' + arrMatches[intMatch][arrKeys[i]].Title +
@@ -84,7 +84,7 @@ $(function() {
 			var strOrderedList = '<ol>';
 
 			for (var i = 0; i < arrMovies.length; i++) {
-				strOrderedList += '<li><div class="movie text-left"><img src="' + arrMovies[i].Poster +
+				strOrderedList += '<li><div class="movie"><img src="' + arrMovies[i].Poster +
 													'" alt="' + arrMovies[i].Title +
 													'"><h2>' + arrMovies[i].Title +
 													'</h2><p>' + arrMovies[i].Year +
