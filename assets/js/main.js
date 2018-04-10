@@ -81,7 +81,7 @@ $(function() {
 			arrMovies.sort(sortMovieArray);
 
 			// start ordered list
-			var strOrderedList = '<ol class="sorted-list">';
+			var strOrderedList = '<h2>Congratulation!</h2><p>Here is your top 10 American films of all time!</p><ol class="sorted-list">';
 
 			for (var i = 0; i < arrMovies.length; i++) {
 				strOrderedList += '<li><div class="movie"><img src="' + arrMovies[i].Poster +
@@ -156,14 +156,14 @@ $(function() {
 		// array to hold top 10 movies
 		var arrMovieIDs = [
 			'tt0033467',
-			// 'tt0068646',
-			// 'tt0034583',
-			// 'tt0081398',
-			// 'tt0045152',
-			// 'tt0031381',
-			// 'tt0056172',
-			// 'tt0108052',
-			// 'tt0052357',
+			'tt0068646',
+			'tt0034583',
+			'tt0081398',
+			'tt0045152',
+			'tt0031381',
+			'tt0056172',
+			'tt0108052',
+			'tt0052357',
 			'tt0032138'
 		];
 
