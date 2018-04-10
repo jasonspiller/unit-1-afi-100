@@ -1,51 +1,135 @@
 $(function() {
 
 	// global until I find a better way
-	var arrMovies = [];
+	var arrMovies = [],
+			arrMatches = [],
+			intMatch = 0;
 
-	//build movies to be added to the board
-	function buildMovie(num, imgPath, title, year) {
 
-		// build movie output string
-		var strMovie = `<div class="movie text-left" id="movie${num}"><img src="${imgPath}" alt="${title}"><h2>${title}</h2><h3>${year}</h3></div>`;
+	// sort the array based on votes
+	function sortMovieArray(a, b) {
 
-		return strMovie;
+		var votesA = a.votes;
+		var votesB = b.votes;
+
+		var comparison = 0;
+		if (votesA < votesB) {
+			comparison = 1;
+		} else if (votesA > votesB) {
+			comparison = -1;
+		}
+		return comparison;
 	}
 
 
 	// start the game
-	function startGame(movieArray) {
+	function playGame() {
 
-		//build movies output
-		var strOutputMovies = buildMovie(1,movieArray[0].Poster,movieArray[0].Title,movieArray[0].Year); + ''
-		strOutputMovies += buildMovie(2,movieArray[1].Poster,movieArray[1].Title, movieArray[1].Year);
+		// test to see if there are more matches
+		if (intMatch < arrMatches.length) {
 
-		// toggle display and output movies to the board
-		$('#gameBoard').slideToggle(500, function() {
-			$(this).html(strOutputMovies);
-			$(this).slideToggle(500);
-		});
+			// the keys to use as IDs on the
+			var arrKeys = Object.keys(arrMatches[intMatch]);
+			var strOutputMatch = '';
 
-		// add event handler to movie
-		$('#gameBoard').on('click', '.movie', function () {
+			//build movies output
+			for (var movie = 0; movie < arrKeys.length; movie++) {
 
-			// get the title of winning movie
-			var objMovieTitle = $(this).find('h2');
-			var strMovieTitle = objMovieTitle[0].innerText;
+				strOutputMatch += '<div class="movie text-left" id="' + arrKeys[movie] +
+													'"><img src="' + arrMatches[intMatch][arrKeys[movie]].Poster +
+													'" alt="' + arrMatches[intMatch][arrKeys[movie]].Title +
+													'"><h2>' + arrMatches[intMatch][arrKeys[movie]].Title +
+													'</h2><h3>' + arrMatches[intMatch][arrKeys[movie]].Year +
+													'</h3></div>';
+			}
 
-			// test for
-			for (var i=0; i < arrMovies.length; i++) {
-        if (arrMovies[i].Title === strMovieTitle) {
-        	if(arrMovies[i].Votes === undefined) {
-						arrMovies[i].Votes = 1;
-					} else {
-						arrMovies[i].Votes += 1;
+			// output progress
+			strOutputMatch += `<div>Step ${intMatch+1} of ${arrMatches.length}</div>`;
+
+			// toggle display and output movies to the board
+			$('#gameBoard').slideToggle(500, function() {
+				$(this).html(strOutputMatch);
+				$(this).slideToggle(500);
+			});
+
+			// clear all event listeners
+			$('#gameBoard').off('click', '.movie');
+
+			// add event listener to movie
+			$('#gameBoard').on('click', '.movie', function () {
+
+				// get the title of winning movie
+				var strMovieTitle = $(this).find('h2')[0].innerText;
+
+				// add vote to the appropriate
+				for (var i=0; i < arrMovies.length; i++) {
+					if (arrMovies[i].Title === strMovieTitle) {
+						arrMovies[i].votes += 1;
 					}
-        }
-    	}
+				}
 
-			console.log(arrMovies);
-		});
+				intMatch++;
+
+				// call the function again and update
+				playGame()
+
+			});
+
+		} else {
+
+			// no more matches, sort array based on votes
+			arrMovies.sort(sortMovieArray)
+
+			// output sorted array
+			$('#gameBoard').slideToggle(500, function() {
+				//$(this).html(arrMovies);
+				console.log(arrMovies);
+				$(this).slideToggle(500);
+			});
+		}
+	}
+
+	// determin and store matches
+	function createMatches() {
+
+		// for loop variables
+		var x = 0,
+		    y = 0;
+
+		// output all possible matches
+		for (x = arrMovies.length; x--;)
+		{
+		  for(y = x; y--;)
+		  {
+		    arrMatches.push({ movie1: arrMovies[x], movie2: arrMovies[y] });
+		  }
+		}
+
+		// randomize Matches
+		function shuffle(array) {
+
+		  var currentIndex = array.length,
+					temporaryValue,
+					randomIndex;
+
+		  // while there remain elements to shuffle
+		  while (0 !== currentIndex) {
+
+		    // pick a remaining element
+		    randomIndex = Math.floor(Math.random() * currentIndex);
+		    currentIndex -= 1;
+
+		    // swap it with the current element.
+		    temporaryValue = array[currentIndex];
+		    array[currentIndex] = array[randomIndex];
+		    array[randomIndex] = temporaryValue;
+		  }
+		  return array;
+		}
+
+		arrMatches = shuffle(arrMatches);
+
+		playGame();
 	}
 
 
@@ -67,7 +151,7 @@ $(function() {
 		];
 
 		// make api calls for all movies
-		for(var i=0; i<arrMovieIDs.length; i++) {
+		for(var i = 0; i < arrMovieIDs.length; i++) {
 
 			// call api
 			$.get(`http://www.omdbapi.com/?i=${arrMovieIDs[i]}&apikey=5e90d428`, function(response) {
@@ -75,15 +159,20 @@ $(function() {
 				// add each move to the array
 				arrMovies.push(response);
 
-				// make sure we have all movies
+				// make sure we have all movies, add vote property
 				if (arrMovies.length === arrMovieIDs.length) {
-					startGame(arrMovies);
+
+					for (var i=0; i < arrMovies.length; i++) {
+						arrMovies[i].votes = 0;
+					}
+
+					createMatches();
 				}
 			})
 		}
 	}
 
 	// event handlers
-	$('#play').on('click', initGame);
+	$('.play').on('click', initGame);
 
 })
